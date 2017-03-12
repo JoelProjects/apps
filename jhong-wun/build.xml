@@ -1,0 +1,43 @@
+<project name="tzuchi" default="all" basedir=".">
+<description>This is a build file.</description>
+
+  <property name="src.path" location="src"/>
+  <property name="lib.path" location="lib"/>
+  <property name="images.path" location="images"/>  
+  <property name="classes.path" location="build/classes"/>
+
+  <path id="build.classpath">
+  </path>
+
+  <target name="prepare">
+    <mkdir dir="${classes.path}"/>
+    <mkdir dir="${lib.path}"/>
+  </target>
+
+  <target name="compile" depends="clean, prepare">
+    <javac srcdir="${src.path}" 
+           destdir="${classes.path}"
+           classpathref="build.classpath"
+           debug="true" deprecation="true"/>
+    <copy todir="${classes.path}/jhongwun/ui/images">
+      <fileset dir="${images.path}" excludes="Thumbs.db"/>
+    </copy>           
+  </target>
+
+  <target name="jar" depends="compile" description="for building JAR file">
+    <delete file="${lib.path}/jhong-wun.jar" quiet="true"/> 
+    <jar destfile="${lib.path}/jhong-wun.jar" compress="true">
+      <fileset dir="${classes.path}" includes="**/*"/>
+    </jar>
+  </target>
+
+  <target name="all" depends="jar">
+  </target>
+
+  <target name="clean" description="remove all build generated files">
+    <delete includeEmptyDirs="true" failonerror="false" quiet="true">
+      <fileset dir="${classes.path}" includes="**/*" />
+    </delete>
+  </target>
+
+</project>

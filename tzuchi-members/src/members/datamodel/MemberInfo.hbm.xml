@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="members.datamodel.MemberInfo" table="member_info">
+  		<id name="memberId" column="member_id">
+      	<generator class="members.utils.id.MemberIdGenerator"/>
+ 		</id>
+   	<property name="firstName" column="first_name" length="45"/>
+   	<property name="lastName" column="last_name" length="45"/>
+	   <property name="chFirstName" column="c_first_name" length="45"/>
+	   <property name="chLastName" column="c_last_name" length="45"/>
+	   <property name="homePhone" column="home_phone" length="20"/>	
+	   <property name="cellPhone" column="cell_phone" length="20"/>	 
+		<property name="workPhone" column="work_phone" length="20"/>
+		<property name="email" column="email" length="45"/>
+      <one-to-one name="accountInfo"
+      	class="members.datamodel.AccountInfo" 
+      	property-ref="memberInfo"/>							
+    </class>
+</hibernate-mapping>

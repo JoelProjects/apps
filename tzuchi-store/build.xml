@@ -1,0 +1,94 @@
+<project name="tzuchi" default="all" basedir=".">
+   <description>This is a buildfile for the Tzu-Chi Store</description>
+
+   <property name="src.dir" location="src"/>
+   <property name="lib.dir" location="lib"/>
+   <property name="images.dir" location="images"/>
+   <property name="classes.dir" location="build/classes"/>
+
+   <path id="classpath">
+      <fileset dir="${lib.dir}">
+         <include name="*.jar"/>
+      </fileset>
+   </path>  
+   
+   <taskdef name="hibernatetool"
+      classname="org.hibernate.tool.ant.HibernateToolTask"
+      classpathref="classpath"/>
+
+   <target name="prepare">
+      <mkdir dir="${classes.dir}"/>
+      <mkdir dir="${lib.dir}"/>
+   </target>
+
+   <target name="compile" depends="clean, prepare, copy-dependencies">
+      <javac srcdir="${src.dir}" 
+           destdir="${classes.dir}"
+           classpathref="classpath"
+           encoding="utf8"
+           debug="true" deprecation="true"/>
+      <copy todir="${classes.dir}/store/ui/images">
+         <fileset dir="${images.dir}" excludes="Thumbs.db"/>
+      </copy>
+   </target>
+
+   <target name="jar" depends="compile" description="for store.jar">
+      <!-- convert the libraries to be included in the Class-Path attribute of the MANIFEST.MF file -->
+      <pathconvert property="manifest.classpath" pathsep=" ">
+         <path refid="classpath"/>	      	
+         <flattenmapper/>
+      </pathconvert>   
+      <delete file="${lib.dir}/store.jar" quiet="true"/>
+      <jar destfile="${lib.dir}/store.jar" compress="true">
+         <fileset dir="${classes.dir}" includes="**/*"/>
+         <fileset dir="${src.dir}" includes="store/datamodel/**/*.xml "/>
+         <manifest>
+            <attribute name="Class-Path" value="${manifest.classpath}"/>
+         </manifest>         
+      </jar>
+   </target>
+
+   <target name="copy-dependencies">
+      <copy todir="${lib.dir}">
+         <fileset dir="../tzuchi-members/lib">
+            <include name="members-common.jar"/>
+            <include name="hibernate.cfg.members.xml"/>
+         </fileset>
+      </copy>
+   </target>   
+   
+   <target name="copy-meta-files">
+      <copy todir="${lib.dir}">
+         <fileset dir="${src.dir}">
+            <include name="hibernate.cfg.store.xml"/>
+            <include name="log4j.properties"/>
+         </fileset>
+      </copy>
+   </target>
+
+   <target name="all" depends="jar, copy-meta-files">
+   </target>
+
+   <target name="clean" description="remove all build generated files">
+      <delete includeEmptyDirs="true" failonerror="false" quiet="true">
+         <fileset dir="${classes.dir}" includes="**/*" />
+      </delete>
+   </target>
+
+   <target name="schema-export" depends="compile, copy-meta-files"
+     description="Exports a generated schema to DB and file">
+      <hibernatetool destdir="${basedir}">
+         <classpath path="${lib.dir}"/>
+         <configuration
+           configurationfile="${lib.dir}/hibernate.cfg.store.xml"/>
+         <hbm2ddl
+           drop="false"
+           create="true"
+           update="false"
+           export="true"
+           outputfilename="tzuchi-store.sql"
+           format="true"/>
+      </hibernatetool>
+   </target>
+
+</project>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="store.datamodel.Invoice" table="invoice">
+    	<id name="invoiceId" column="invoice_id">
+      	<generator class="native"/>
+ 		</id>
+ 		<property name="invoiceNumber" column="invoice_no" length="20"/>
+   	<property name="handledBy" column="handled_by" length="25"/>	
+   	<property name="purchasedBy" column="purchased_by" length="50"/>
+	   <property name="invoiceDate" column="invoice_date"/>
+	   <property name="total" column="total"/>	
+  		<set name="items" lazy="true" inverse="true">
+      	<key column="invoice_id"/>
+      	<one-to-many class="store.datamodel.InvoiceItem"/>
+  		</set> 
+    </class>
+</hibernate-mapping>

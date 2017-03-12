@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="members.datamodel.AccountInfo" table="account_info">
+  		<id name="username" column="username" length="45"/>
+   	<property name="password" column="password" length="45"/>  		
+      <many-to-one name="memberInfo" lazy="false" 
+      	class="members.datamodel.MemberInfo" 
+      	unique="true"
+      	cascade="save-update"
+      	foreign-key="FK_account_info_1">
+      	<column name="member_id"/>	
+     	</many-to-one>	
+		<set name="roles" table="account_role">
+    		<key column="username"/>
+        	<many-to-many column="account_role_id"
+            class="members.datamodel.AccountRoleInfo"/>
+		</set>     	
+	</class>
+</hibernate-mapping>

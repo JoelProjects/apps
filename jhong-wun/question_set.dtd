@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT question-set (description?, time, question*)>
+<!ELEMENT question (subject, choices*, answer)>
+<!ELEMENT choices (choice*)>
+
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT time (#PCDATA)>
+<!ELEMENT subject (#PCDATA)>
+<!ELEMENT choice (#PCDATA)>
+<!ELEMENT answer (#PCDATA)>

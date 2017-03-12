@@ -1,0 +1,10 @@
+﻿INSERT INTO item_type_info (type_id, type_name) VALUES (1, '書籍');
+INSERT INTO item_type_info (type_id, type_name) VALUES (2, '雜誌');
+INSERT INTO item_type_info (type_id, type_name) VALUES (3, 'DVD');
+INSERT INTO item_type_info (type_id, type_name) VALUES (4, 'CD');
+INSERT INTO item_type_info (type_id, type_name) VALUES (5, '食物');
+INSERT INTO item_type_info (type_id, type_name) VALUES (6, '文具');
+INSERT INTO item_type_info (type_id, type_name) VALUES (7, '環保餐具');
+INSERT INTO item_type_info (type_id, type_name) VALUES (8, '禮品');
+INSERT INTO item_type_info (type_id, type_name) VALUES (9, '制服');
+INSERT INTO item_type_info (type_id, type_name) VALUES (99, '其他');

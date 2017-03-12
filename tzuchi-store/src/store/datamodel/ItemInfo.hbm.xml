@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="store.datamodel.ItemInfo" table="item_info">
+  		<id name="itemId" column="item_id">
+      	<generator class="native"/>
+ 		</id>
+   	<property name="itemNo" column="item_no" length="10"/>
+   	<property name="barcode" column="barcode" length="15"/>
+	   <property name="name" column="name" length="50"/>
+	   <property name="price" column="price"/>	
+	   <property name="quantity" column="quantity"/>	
+      <many-to-one name="typeInfo"
+      	class="store.datamodel.ItemTypeInfo" 
+      	unique="true"
+      	foreign-key="FK_item_info_1">
+      	<column name="type_id"/>	
+     	</many-to-one>
+     <set name="history" inverse="true">
+        <key column="item_id"/>
+        <one-to-many class="store.datamodel.ItemHistory"/>
+    </set>	
+    <set name="invoiceItem" inverse="true">
+        <key column="item_id"/>
+        <one-to-many class="store.datamodel.InvoiceItem"/>
+    </set>	   	
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="store.datamodel.ItemHistory" table="item_history">
+  		<id name="historyId" column="hist_id">
+      	<generator class="native"/>
+ 		</id>	
+   	<property name="modifiedBy" column="modified_by" length="25"/>	
+	   <property name="modifiedDate" column="mod_date"/>
+	   <property name="updatedQuantity" column="updated_quantity"/>
+	   <property name="invoiceNumber" column="invoice_number" length="20"/>	
+	   <property name="invoiceDate" column="invoice_date"/>	   
+      <many-to-one name="itemInfo"
+      	class="store.datamodel.ItemInfo" 
+      	unique="true"
+      	foreign-key="FK_item_history_1">
+      	<column name="item_id"/>	
+     	</many-to-one>		   	   	
+    </class>
+</hibernate-mapping>

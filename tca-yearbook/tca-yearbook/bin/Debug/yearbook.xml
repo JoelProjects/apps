@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<yearbook>
+   <app-title>麻州慈濟人文學校 校刊2007-2008</app-title>
+   <year>2008</year>
+   <title-image>title.gif</title-image>
+   <url>http://tzuchiboston.org</url>
+   <sections>
+      <section>
+         <name>生活剪影</name>
+         <!--<file>school/school.xml</file>-->
+         <tooltip>School Activities</tooltip>
+      </section>
+      <section>
+         <name>課外活動</name>
+         <!--<file>activities/activities.xml</file>-->
+         <tooltip>Extra-Curricular Activities</tooltip>
+      </section>      
+      <section>
+         <name>靜思語教學</name>
+         <!--<file>still/still.xml</file>-->
+         <tooltip>Still Thought Training</tooltip>
+      </section>
+      <section>
+         <name>幼小班</name>
+         <file>k1/k1.xml</file>
+         <tooltip>K1</tooltip>
+      </section>
+      <section>
+         <name>幼中班</name>
+         <file>k2/k2.xml</file>
+         <tooltip>K2</tooltip>
+      </section>
+      <section>
+         <name>幼大班</name>
+         <!--<file>k3/k3.xml</file>-->
+         <tooltip>K3</tooltip>
+      </section>      
+      <section>
+         <name>一年級</name>
+         <!--<file>g1/g1.xml</file>-->
+         <tooltip>G1</tooltip>
+      </section>
+      <section>
+         <name>二年級</name>
+         <!--<file>g2/g2.xml</file>-->
+         <tooltip>G2</tooltip>
+      </section>    
+      <section>
+         <name>三年級</name>
+         <!--<file>g3/g3.xml</file>-->
+         <tooltip>G3</tooltip>
+      </section>
+      <section>
+         <name>四年級</name>
+         <!--<file>g4/g4.xml</file>-->
+         <tooltip>G4</tooltip>
+      </section>
+      <section>
+         <name>五年級</name>
+         <!--<file>g5/g5.xml</file>-->
+         <tooltip>G5</tooltip>
+      </section>
+      <section>
+         <name>六年級</name>
+         <!--<file>g6/g6.xml</file>-->
+         <tooltip>G6</tooltip>
+      </section>
+      <section>
+         <name>七年級</name>
+         <!--<file>g7/g7.xml</file>-->
+         <tooltip>G7</tooltip>
+      </section>
+      <section>
+         <name>九年級</name>
+         <!--<file>g9/g9.xml</file>-->
+         <tooltip>G9</tooltip>
+      </section>
+      <section>
+         <name>雙語班</name>
+         <!--<file>bilingual/bilingual.xml</file>-->
+         <tooltip>Bilingual</tooltip>
+      </section>      
+   </sections>   
+</yearbook>

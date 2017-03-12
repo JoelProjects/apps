@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="store.datamodel.ItemTypeInfo" table="item_type_info">
+  		<id name="typeId" column="type_id">
+      	<generator class="native"/>
+ 		</id>	 		 		
+   	<property name="typeName" column="type_name" length="20"/>
+    </class>
+</hibernate-mapping>

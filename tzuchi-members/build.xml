@@ -1,0 +1,83 @@
+<project name="tzuchi" default="all" basedir=".">
+	<description>This is a buildfile for the Tzu-Chi Members</description>
+
+	<property name="src.dir" location="src"/>
+	<property name="lib.dir" location="lib"/>
+	<property name="images.dir" location="images"/>
+	<property name="classes.dir" location="build/classes"/>
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>	
+	
+	<taskdef name="hibernatetool"
+     	classname="org.hibernate.tool.ant.HibernateToolTask"
+     	classpathref="classpath"/>
+
+	<target name="prepare">
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${lib.dir}"/>
+	</target>
+
+	<target name="compile" depends="clean, prepare">
+		<javac srcdir="${src.dir}" 
+           destdir="${classes.dir}"
+           classpathref="classpath"
+           debug="true" deprecation="true"/>
+		<copy todir="${classes.dir}/members/ui/images">
+			<fileset dir="${images.dir}" excludes="Thumbs.db"/>
+		</copy>
+	</target>
+
+	<target name="common-jar" depends="compile" description="for members-common.jar">
+		<delete file="${lib.dir}/members-common.jar" quiet="true"/>
+		<jar destfile="${lib.dir}/members-common.jar" compress="true">
+			<fileset dir="${classes.dir}" excludes="members/ui/*"/>
+			<fileset dir="${src.dir}" includes="members/datamodel/**/*.xml "/>
+		</jar>
+	</target>
+
+	<target name="manager-jar" depends="compile" description="for members-ui.jar">
+		<delete file="${lib.dir}/members-ui.jar" quiet="true"/>
+		<jar destfile="${lib.dir}/members-ui.jar" compress="true">
+			<fileset dir="${classes.dir}" includes="members/ui/**/*" />
+		</jar>
+	</target>
+
+	<target name="copy-meta-files">
+		<copy todir="${lib.dir}">
+			<fileset dir="${src.dir}">
+				<include name="hibernate.cfg.members.xml"/>
+				<include name="log4j.properties"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="all" depends="common-jar, manager-jar, copy-meta-files">
+	</target>
+
+	<target name="clean" description="remove all build generated files">
+		<delete includeEmptyDirs="true" failonerror="false" quiet="true">
+			<fileset dir="${classes.dir}" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="schema-export" depends="compile, copy-meta-files"
+     description="Exports a generated schema to DB and file">
+		<hibernatetool destdir="${basedir}">
+			<classpath path="${lib.dir}"/>
+			<configuration
+           configurationfile="${lib.dir}/hibernate.cfg.members.xml"/>
+			<hbm2ddl
+           drop="false"
+           create="true"
+			  update="false"
+           export="true"
+           outputfilename="tzuchi-members.sql"
+           format="true"/>
+		</hibernatetool>
+	</target>
+
+</project>

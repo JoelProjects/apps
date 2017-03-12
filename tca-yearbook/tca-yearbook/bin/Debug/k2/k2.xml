@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<section>
+   <items>
+      <item>
+         <file>test21.jpg</file>
+         <description>This is an image file.</description>
+      </item>
+      <item>
+         <file>test22.pdf</file>
+         <description>This is a PDF file.</description>
+      </item>
+      <item>
+         <file>test23.wmv</file>
+         <description>This is an Video file.</description>
+      </item>
+   </items>
+</section>

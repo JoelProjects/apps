@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<section>
+   <items>
+      <item>
+         <file>k1/test11.jpg</file>
+         <description>This is an image file.</description>
+      </item>
+      <item>
+         <file>test12.pdf</file>
+         <description>This is a PDF file.</description>
+      </item>
+      <item>
+         <file>test13.wmv</file>
+         <description>This is an Video file.</description>
+      </item>  
+   </items>
+   <sections>
+      <section>
+         <name>sub name 1</name>
+         <file>k1/subsub1.xml</file>
+         <tooltip>tooltip 1</tooltip>
+      </section>
+      <section>
+         <name>sub name 2</name>
+         <file>k1/subsub2.xml</file>
+         <tooltip>tooltip 2</tooltip>
+      </section>
+   </sections>
+</section>
